@@ -27,7 +27,9 @@ plusButton.onclick = function(){
 }
 
 resultButton.onclick = function(){
-    renderDisplay.innerText =  eval(renderDisplay.innerText);
+    memoryTemp =  eval(renderDisplay.innerText);
+    renderDisplay.innerText = memoryTemp.toPrecision(7);
+    
 }
 
 minusButton.onclick = function(){
@@ -35,13 +37,26 @@ minusButton.onclick = function(){
 }
 
 divisionButton.onclick = function(){
-    renderDisplay.innerText = `(${renderDisplay.innerText}) / `;
+    renderDisplay.innerText = `${renderDisplay.innerText}/`;
     
 }
 
 multiplierButton.onclick = function(){
-    renderDisplay.innerText = `(${renderDisplay.innerText}) * `;
+    renderDisplay.innerText = `${renderDisplay.innerText}*`;
 
 }
 
+var mouseIsDown = false;
 
+deleteButton.addEventListener('mousedown', function() {
+  mouseIsDown = true;
+  setTimeout(function() {
+    if(mouseIsDown) {
+       renderDisplay.innerText = "";
+    }
+  }, 1500);
+});
+
+deleteButton.addEventListener('mouseup', function() {
+  mouseIsDown = false;
+});
